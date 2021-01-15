@@ -80,8 +80,6 @@ def get_score_allpicture_2(dir,res_dir):
             file_handle.write('\n')
 
 
-
-
         if info == 1:
             t5 = time.time();
             msgs = [];
