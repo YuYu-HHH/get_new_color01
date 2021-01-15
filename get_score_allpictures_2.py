@@ -50,14 +50,17 @@ def get_score_allpicture_2(dir,res_dir):
         # 得到更好得分的颜色组合,转换颜色
         score_1 = get_score(color_1);
         t3 = time.time();
-        color_2s,score_2s,info = get_better_color_by_cal_3(color_1,score_1);
+        # color_2s,score_2s,info = get_better_color_by_cal_3(color_1,score_1);
         t4 = time.time();
         print('get_better_color_by_cal_3的运行时间: {}'.format(str(t4 - t3)));
 
         ori_RGB = str(np.array(color_1))
-        res_RGB = str(color_2s)
+        # res_RGB = str(color_2s)
         ori_LAB = str(colors_lab)
-        dir_res_info = './res_info/'+fileNames[i]
+
+        if not os.path.exists('./res_info/'):
+            os.mkdir('./res_info/');
+        dir_res_info = './res_info/' + fileNames[i];
         if not os.path.exists(dir_res_info):
             os.mkdir(dir_res_info);
         with open(dir_res_info + '/结果存放picture.txt', 'a') as file_handle:
@@ -69,7 +72,7 @@ def get_score_allpicture_2(dir,res_dir):
             file_handle.write('\n')
             file_handle.write("res_RGB")
             file_handle.write('\n')
-            file_handle.write(res_RGB)
+            # file_handle.write(res_RGB)
             file_handle.write('\n')
             file_handle.write('ori_LAB')
             file_handle.write('\n')
