@@ -1,0 +1,95 @@
+Index: get_score_allpictures_2.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import multiprocessing\r\nimport os\r\nimport time\r\nfrom os import listdir\r\nfrom os.path import join\r\nimport numpy as np\r\n\r\nfrom cal_new_color.get_better_color_by_cal_3 import get_better_color_by_cal_3\r\nfrom get_color_from_photo.get_colors_fromphoto import get_colors_fromphoto\r\nfrom get_score.get_scores import get_score\r\nfrom transfer_photo.transfer_photo import transfer_photo\r\nfrom utils.get_info import get_lab_info\r\nfrom utils.judge_dir import get_filenames\r\nfrom utils.sorted_color import save_picture_1, save_picture_2\r\n\r\n\r\n# 获取图片的颜色,输出图片的rgb\r\n# 获取颜色的得分,计算前五颜色的得分\r\n# 得到更高得分的颜色组合\r\n# 重新上色\r\ndef get_score_allpicture_2(dir,res_dir):\r\n    # 获取文件夹里面的图片，和图片的名称\r\n\r\n    fileNames , img_filenames = get_filenames(dir);\r\n    # 文件夹中图片的数量\r\n    img_filename_shape = len(np.array(img_filenames));\r\n    print(\"一共有{}张图片\".format(img_filename_shape));\r\n    for i in range(img_filename_shape):\r\n\r\n        t1 = time.time()\r\n        colors_rgb = get_colors_fromphoto(img_filenames[i])\r\n        t2 = time.time();\r\n        print('Photo_GetColor_By_k的运行时间: {}'.format(str(t2 - t1)))\r\n\r\n        colors_res = np.array(colors_rgb);\r\n        color_1 = np.transpose(colors_res);\r\n        # colors_lab = get_lab_info(colors_res);\r\n        if len(color_1[0]) < 5:\r\n            print(len(color_1[0]))\r\n            print('颜色太少了');\r\n            break;\r\n        else:\r\n            t = 5;\r\n\r\n        color_1 = color_1[:, 0:t];\r\n        color_1 = list(color_1);\r\n        colors_res = colors_res[0:t,:];\r\n        colors_lab = get_lab_info(colors_res);\r\n        save_picture_1(np.transpose(color_1), fileNames[i]);\r\n        # 得到更好得分的颜色组合,转换颜色\r\n        score_1 = get_score(color_1);\r\n        t3 = time.time();\r\n        color_2s,score_2s,info = get_better_color_by_cal_3(color_1,score_1);\r\n        t4 = time.time();\r\n        print('get_better_color_by_cal_3的运行时间: {}'.format(str(t4 - t3)));\r\n\r\n        ori_RGB = str(np.array(color_1))\r\n        res_RGB = str(color_2s)\r\n        ori_LAB = str(colors_lab)\r\n        dir_res_info = './res_info/'+fileNames[i]\r\n        if not os.path.exists(dir_res_info):\r\n            os.mkdir(dir_res_info);\r\n        with open(dir_res_info + '/结果存放picture.txt', 'a') as file_handle:\r\n            file_handle.write(fileNames[i] )\r\n            file_handle.write('\\n')\r\n            file_handle.write( \"ori_RGB\")\r\n            file_handle.write('\\n')\r\n            file_handle.write(ori_RGB)\r\n            file_handle.write('\\n')\r\n            file_handle.write(\"res_RGB\")\r\n            file_handle.write('\\n')\r\n            file_handle.write(res_RGB)\r\n            file_handle.write('\\n')\r\n            file_handle.write('ori_LAB')\r\n            file_handle.write('\\n')\r\n            file_handle.write(ori_LAB)\r\n            file_handle.write('\\n')\r\n\r\n\r\n\r\n\r\n        if info == 1:\r\n            t5 = time.time();\r\n            msgs = [];\r\n            colors_lab = np.array(colors_lab);\r\n            colors_lab = colors_lab[0:t, :];\r\n            print(colors_lab)\r\n            for j in range(len(score_2s)):\r\n\r\n                color_2 = color_2s[j];\r\n                color_2 = np.transpose(color_2);\r\n                lab_color = get_lab_info(color_2);\r\n                save_picture_2(color_2, fileNames[i], j);\r\n                # print(lab_color)\r\n                lab_color = lab_color[0:t, :];\r\n                print(lab_color)\r\n                msgs.append([img_filenames[i],fileNames[i],colors_lab,lab_color,j,dir,res_dir]);\r\n                res_LAB = str(lab_color)\r\n                with open(dir_res_info + '/结果存放picture.txt', 'a') as file_handle:\r\n                    file_handle.write('res_LAB      :::' + str(j))\r\n                    file_handle.write('\\n')\r\n                    file_handle.write(res_LAB)\r\n                    file_handle.write('\\n')\r\n\r\n            with multiprocessing.Pool(multiprocessing.cpu_count()) as pool:\r\n                pool.starmap(transfer_photo, msgs);\r\n            t6 = time.time();\r\n            print('transfer_photo的运行时间: {}'.format(str(t6 - t5)));\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/get_score_allpictures_2.py b/get_score_allpictures_2.py
+--- a/get_score_allpictures_2.py	(revision a6d852e5b568dae4a39cae1bd316789295591c09)
++++ b/get_score_allpictures_2.py	(date 1610699625909)
+@@ -50,14 +50,17 @@
+         # 得到更好得分的颜色组合,转换颜色
+         score_1 = get_score(color_1);
+         t3 = time.time();
+-        color_2s,score_2s,info = get_better_color_by_cal_3(color_1,score_1);
++        # color_2s,score_2s,info = get_better_color_by_cal_3(color_1,score_1);
+         t4 = time.time();
+         print('get_better_color_by_cal_3的运行时间: {}'.format(str(t4 - t3)));
+ 
+         ori_RGB = str(np.array(color_1))
+-        res_RGB = str(color_2s)
++        # res_RGB = str(color_2s)
+         ori_LAB = str(colors_lab)
+-        dir_res_info = './res_info/'+fileNames[i]
++
++        if not os.path.exists('./res_info/'):
++            os.mkdir('./res_info/');
++        dir_res_info = './res_info/' + fileNames[i];
+         if not os.path.exists(dir_res_info):
+             os.mkdir(dir_res_info);
+         with open(dir_res_info + '/结果存放picture.txt', 'a') as file_handle:
+@@ -69,7 +72,7 @@
+             file_handle.write('\n')
+             file_handle.write("res_RGB")
+             file_handle.write('\n')
+-            file_handle.write(res_RGB)
++            # file_handle.write(res_RGB)
+             file_handle.write('\n')
+             file_handle.write('ori_LAB')
+             file_handle.write('\n')
+Index: res_info/16c7be07132d90169371895cc765fda/结果存放picture.txt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/res_info/16c7be07132d90169371895cc765fda/结果存放picture.txt b/res_info/16c7be07132d90169371895cc765fda/结果存放picture.txt
+deleted file mode 100644
+--- a/res_info/16c7be07132d90169371895cc765fda/结果存放picture.txt	(revision a6d852e5b568dae4a39cae1bd316789295591c09)
++++ /dev/null	(revision a6d852e5b568dae4a39cae1bd316789295591c09)
+@@ -1,45 +0,0 @@
+-16c7be07132d90169371895cc765fda
+-ori_RGB
+-[[254 212  49 141 181]
+- [181 226  34  25 135]
+- [213 244  49  83 243]]
+-res_RGB
+-[array([[254, 153,  49, 141, 181],
+-       [181, 102,  34,  25, 135],
+-       [213, 153,  49,  83, 243]]), array([[254, 212, 204, 141, 181],
+-       [181, 226, 102,  25, 135],
+-       [213, 244, 204,  83, 243]]), array([[254, 212,  49,  95, 181],
+-       [181, 226,  34, 119, 135],
+-       [213, 244,  49, 152, 243]]), array([[254, 212,  49, 141, 204],
+-       [181, 226,  34,  25, 102],
+-       [213, 244,  49,  83, 153]])]
+-ori_LAB
+-[[200. 150.  96.]
+- [232. 133. 137.]
+- [ 39. 137. 121.]
+- [ 63. 172.  75.]
+- [178. 174. 123.]]
+-res_LAB      :::0
+-[[200. 150.  96.]
+- [128. 155. 108.]
+- [ 39. 137. 121.]
+- [ 63. 172.  75.]
+- [178. 174. 123.]]
+-res_LAB      :::1
+-[[200. 150.  96.]
+- [232. 133. 137.]
+- [149. 180.  93.]
+- [ 63. 172.  75.]
+- [178. 174. 123.]]
+-res_LAB      :::2
+-[[200. 150.  96.]
+- [232. 133. 137.]
+- [ 39. 137. 121.]
+- [134. 138. 147.]
+- [178. 174. 123.]]
+-res_LAB      :::3
+-[[200. 150.  96.]
+- [232. 133. 137.]
+- [ 39. 137. 121.]
+- [ 63. 172.  75.]
+- [133. 164.  83.]]

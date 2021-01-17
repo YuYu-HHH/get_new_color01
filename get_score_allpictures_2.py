@@ -94,7 +94,7 @@ def get_score_allpicture_2(dir,res_dir):
                 save_picture_2(color_2, fileNames[i], j);
                 # print(lab_color)
                 lab_color = lab_color[0:t, :];
-                print(lab_color)
+                # print(lab_color)
                 msgs.append([img_filenames[i],fileNames[i],colors_lab,lab_color,j,dir,res_dir]);
                 res_LAB = str(lab_color)
                 with open(dir_res_info + '/结果存放picture.txt', 'a') as file_handle:
