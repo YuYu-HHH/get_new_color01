@@ -5,8 +5,9 @@ def print_hi(name):
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
     dir = 'D:/pycharmFilePicture/picture1/'
     res_dir = "D:/pycharmFilePicture/picture_res/"
-
-    get_new_color(dir,res_dir);
+    number = 1;
+    # number = 2;
+    get_new_color(dir,res_dir,number);
 
 
 if __name__ == '__main__':

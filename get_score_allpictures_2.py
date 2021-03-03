@@ -5,6 +5,7 @@ from os import listdir
 from os.path import join
 import numpy as np
 
+from cal_new_color.get_better_color_by_cal import get_better_color_by_cal
 from cal_new_color.get_better_color_by_cal_3 import get_better_color_by_cal_3
 from get_color_from_photo.get_colors_fromphoto import get_colors_fromphoto
 from get_score.get_scores import get_score
@@ -18,9 +19,8 @@ from utils.sorted_color import save_picture_1, save_picture_2
 # 获取颜色的得分,计算前五颜色的得分
 # 得到更高得分的颜色组合
 # 重新上色
-def get_score_allpicture_2(dir,res_dir):
+def get_score_allpicture_2(dir,res_dir,number):
     # 获取文件夹里面的图片，和图片的名称
-
     fileNames , img_filenames = get_filenames(dir);
     # 文件夹中图片的数量
     img_filename_shape = len(np.array(img_filenames));
@@ -46,18 +46,25 @@ def get_score_allpicture_2(dir,res_dir):
         color_1 = list(color_1);
         colors_res = colors_res[0:t,:];
         colors_lab = get_lab_info(colors_res);
-        save_picture_1(np.transpose(color_1), fileNames[i]);
+        save_picture_1(np.transpose(color_1), fileNames[i],number);
         # 得到更好得分的颜色组合,转换颜色
         score_1 = get_score(color_1);
         t3 = time.time();
-        color_2s,score_2s,info = get_better_color_by_cal_3(color_1,score_1);
-        t4 = time.time();
-        print('get_better_color_by_cal_3的运行时间: {}'.format(str(t4 - t3)));
+        if number == 2:
+            color_2s, score_2s, info = get_better_color_by_cal(color_1, score_1);
+            t4 = time.time();
+            print('get_better_color_by_cal的运行时间: {}'.format(str(t4 - t3)));
+        else:
+            if number == 1:
+                color_2s,score_2s,info = get_better_color_by_cal_3(color_1,score_1);
+                t4 = time.time();
+                print('get_better_color_by_cal_3的运行时间: {}'.format(str(t4 - t3)));
+
 
         ori_RGB = str(np.array(color_1))
         res_RGB = str(color_2s)
         ori_LAB = str(colors_lab)
-
+        res_score_2s = str(score_2s)
         if not os.path.exists('./res_info/'):
             os.mkdir('./res_info/');
         dir_res_info = './res_info/' + fileNames[i];
@@ -69,6 +76,10 @@ def get_score_allpicture_2(dir,res_dir):
             file_handle.write( "ori_RGB")
             file_handle.write('\n')
             file_handle.write(ori_RGB)
+            file_handle.write('\n')
+            file_handle.write("res_score_2s")
+            file_handle.write('\n')
+            file_handle.write(res_score_2s)
             file_handle.write('\n')
             file_handle.write("res_RGB")
             file_handle.write('\n')
@@ -91,11 +102,11 @@ def get_score_allpicture_2(dir,res_dir):
                 color_2 = color_2s[j];
                 color_2 = np.transpose(color_2);
                 lab_color = get_lab_info(color_2);
-                save_picture_2(color_2, fileNames[i], j);
+                save_picture_2(color_2, fileNames[i], j,number);
                 # print(lab_color)
                 lab_color = lab_color[0:t, :];
                 # print(lab_color)
-                msgs.append([img_filenames[i],fileNames[i],colors_lab,lab_color,j,dir,res_dir]);
+                msgs.append([img_filenames[i],fileNames[i],colors_lab,lab_color,j,dir,res_dir,number]);
                 res_LAB = str(lab_color)
                 with open(dir_res_info + '/结果存放picture.txt', 'a') as file_handle:
                     file_handle.write('res_LAB      :::' + str(j))

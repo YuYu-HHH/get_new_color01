@@ -24,7 +24,6 @@ def getHueProbFeatures(hsv,satValThresh,hueProbs):
     a = np.array([[359],[100],[100]]);
     repmat = np.tile(a,(1,5));
     #repmat = repmat.T
-    
 
     hsv2=np.round(hsv*repmat)+1;
     
@@ -52,7 +51,7 @@ def getHueProbFeatures(hsv,satValThresh,hueProbs):
         hues.append(hue);
         
     
-    
+
     hueProbFeatures= getBasicStats.getBasicStats(hues,1);
     hueJointProbFeatures= getBasicStats.getBasicStats_2(hueJointList,1);
     hueAdjProbFeatures= getBasicStats.getBasicStats_2(hueAdjList,1);
@@ -61,18 +60,14 @@ def getHueProbFeatures(hsv,satValThresh,hueProbs):
     end = len(alpha);
     alpha = alpha[0:end-1];
     pMix=0.001*np.ones(len(alpha));
-    
     for j in range(len(visHues)):
         pMix = pMix+ circ_vmpdf.circ_vmpdf(alpha, (visHues[j])*2*math.pi, 2*math.pi);
-    
     pMix=pMix/sum(pMix);
-
     pMixs = [];
     for i in range(len(pMix)):
         pMixs.append(pMix[i]);
     pMixs = np.array(pMixs);
 
-    
     sum1 = [];
     if len(visHues) != 0:
         for i in range(len(pMixs)):
@@ -81,17 +76,11 @@ def getHueProbFeatures(hsv,satValThresh,hueProbs):
             sum1.append(pMixs[i] * r);
         sum1 = np.array(sum1);
         entropy=float(-sum(sum1));
-
     else:
         entropy=5.9;
+
         
         
-        
-        
-    # hueFeatures = [];
-    # hueFeatures = [np.array(hueProbFeatures) ,np.array(hueJointProbFeatures),np.array(hueAdjProbFeatures),entropy];
-    #
-    # hueFeatures = np.array(hueFeatures);
 
     
     
@@ -123,6 +112,4 @@ def getHueProbFeatures(hsv,satValThresh,hueProbs):
     b = np.array(entropy);
     hueFeatures = np.insert(hueFeatures,24,values = entropy,axis = 0);
     
-    
-
     return hueFeatures;

@@ -2,19 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5e987c5c-4f17-479a-bb7e-c683eb1d78d6" name="Default Changelist" comment="增加注释">
-      <change afterPath="$PROJECT_DIR$/.idea/get_new_color01.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_1_15_16_34_[Default_Changelist]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_1_15_16_34__Default_Changelist_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/extractColor2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_1_15_16_34_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2021_1_15_16_34__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cal_new_color/get_better_color_by_cal_3.py" beforeDir="false" afterPath="$PROJECT_DIR$/cal_new_color/get_better_color_by_cal_3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_color_from_photo/Photo_GetColor_.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_color_from_photo/Photo_GetColor_.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_color_from_photo/Photo_Recoloring_do.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_color_from_photo/Photo_Recoloring_do.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_new_color.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_new_color.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_score/createFeatureMatrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_score/createFeatureMatrix.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_score/createFeatures.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_score/createFeatures.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_score/getBasicStats.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_score/getBasicStats.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_score/getHueProbFeatures.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_score/getHueProbFeatures.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/get_score/get_scores.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_score/get_scores.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/get_score_allpictures_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/get_score_allpictures_2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/transfer_photo/transfer_photo.py" beforeDir="false" afterPath="$PROJECT_DIR$/transfer_photo/transfer_photo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/get_info.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/get_info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/rgblab.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/rgblab.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/sorted_color.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/sorted_color.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -29,8 +47,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../get_new_color" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/utils" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\PycharmProjects\get_new_color01\utils" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -73,7 +96,24 @@
       <workItem from="1610694395015" duration="4416000" />
       <workItem from="1610698987034" duration="1032000" />
       <workItem from="1610700682135" duration="4191000" />
-      <workItem from="1610801892873" duration="7313000" />
+      <workItem from="1610801892873" duration="9306000" />
+      <workItem from="1610932132320" duration="1728000" />
+      <workItem from="1611030008988" duration="13047000" />
+      <workItem from="1611321690972" duration="4800000" />
+      <workItem from="1611494649928" duration="666000" />
+      <workItem from="1611557450672" duration="2528000" />
+      <workItem from="1611632808089" duration="7603000" />
+      <workItem from="1611724813300" duration="2070000" />
+      <workItem from="1611802559589" duration="10071000" />
+      <workItem from="1611910479280" duration="5252000" />
+      <workItem from="1611981619684" duration="1288000" />
+      <workItem from="1612257013556" duration="6118000" />
+      <workItem from="1612352972175" duration="3364000" />
+      <workItem from="1612357328782" duration="78000" />
+      <workItem from="1612359458275" duration="635000" />
+      <workItem from="1612579177615" duration="697000" />
+      <workItem from="1614671462250" duration="3353000" />
+      <workItem from="1614750565367" duration="1353000" />
     </task>
     <task id="LOCAL-00001" summary="add directory">
       <created>1610699828108</created>
@@ -96,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610700710375</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="增加注释">
+      <created>1610883483543</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1610883483543</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -120,6 +167,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="增加注释" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/get_new_color01$main.coverage" NAME="main Coverage Results" MODIFIED="1610883281642" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/get_new_color01$main.coverage" NAME="main Coverage Results" MODIFIED="1614674466223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

@@ -48,7 +48,7 @@ def save_picture(colors,color2,file_name,j):
     file_name02 = filename_five_res
     cv2.imwrite(file_name02, result1)
 
-def save_picture_1(colors,file_name):
+def save_picture_1(colors,file_name,num):
     n_channels = 3;
     result = []
     result_width = 200
@@ -60,16 +60,21 @@ def save_picture_1(colors,file_name):
     result = np.array(result)
     result = result.reshape((result_height_per_center * (number), result_width, n_channels))
     dir1 = './five_color/'
+    if num == 1:
+        prefix = str('A_');
+    else:
+        if num == 2:
+            prefix = str('B_');
     if not os.path.exists(dir1):
         os.mkdir(dir1)
     dir2 = './five_color/'+file_name+"/"
     if not os.path.exists(dir2):
         os.mkdir(dir2)
-    filename_five_ori = dir2 + file_name + '_ori.jpg'
+    filename_five_ori = dir2 + prefix + file_name + '_ori.jpg'
     file_name01 = filename_five_ori
     cv2.imwrite(file_name01, result)
 
-def save_picture_2(colors,file_name,j):
+def save_picture_2(colors,file_name,j,num):
     n_channels = 3;
     result = []
     result_width = 200
@@ -80,11 +85,16 @@ def save_picture_2(colors,file_name,j):
             np.full((result_width * result_height_per_center, n_channels), colors[i], dtype=int))
     result = np.array(result)
     result = result.reshape((result_height_per_center * (number), result_width, n_channels))
-    dir1 = './five_color/' + file_name + "/"
+    dir1 = './five_color/' + file_name + "/";
+    if num == 1:
+        prefix = str('A_');
+    else:
+        if num == 2:
+            prefix = str('B_');
     if not os.path.exists(dir1):
         os.mkdir(dir1)
     j = str(j);
-    filename_five_ori = dir1 + file_name + '___'+j+'_res.jpg'
+    filename_five_ori = dir1 + prefix + file_name + '___'+j+'_res.jpg'
     file_name01 = filename_five_ori
     cv2.imwrite(file_name01, result)
 

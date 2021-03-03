@@ -11,10 +11,13 @@ from get_score.get_scores import get_score
 
 def cal(color_use_,count,score):
     score_1 = 0;
+    score_2 = score;
     t1 = time.time();
     return_score = [];
     return_color = [];
-    color1 = np.linspace(0, 255, 6);
+    # color1 = np.linspace(0, 255, 8);
+    color1 = np.random.randint(0,255,6);
+
     for i in range(len(color1)):
         for j in range(len(color1)):
             for k in range(len(color1)):
@@ -24,12 +27,14 @@ def cal(color_use_,count,score):
                 color_use_1[count] = column_use;
                 color_use_1 = np.transpose(color_use_1);
                 score_use = get_score(color_use_1);
-                if score_use > score_1:
-                    score_1 = score_use;
+                if score_use > score_2 + 0.05:
                     column_1 = column_use;
+                    break;
+                else:
+                    if score_use > score_1:
+                        score_1 = score_use;
+                        column_1 = column_use;
 
-
-    t2 = time.time();
     color_best_1_lab = rgb2lab(column_1);
     lab_1 = color_best_1_lab[0];
     lab_2 = color_best_1_lab[1];
@@ -56,12 +61,10 @@ def cal(color_use_,count,score):
                     return_score.append(score_2);
                     return_color.append(color_2);
     return return_color,return_score;
-
 def get_better_color_by_cal_3(color,score):
 
     color_use_ = color;
     x = len(color[0]);
-
 
     msgs = [];
     for count in range(x):
@@ -76,11 +79,14 @@ def get_better_color_by_cal_3(color,score):
             scores.append(return_inf[i][1]);
     return_colors = [];
     return_scores = [];
-    if color[0] == []:
+    if color == []:
         return_info = 0;
     else:
-        return_info = 1;
-        for o in range(len(scores)):
-            return_colors.append(np.array(colors[o][0]));
-            return_scores.append(np.array(scores[o][0]));
+        if color[0] == []:
+            return_info = 0;
+        else:
+            return_info = 1;
+            for o in range(len(scores)):
+                return_colors.append(np.array(colors[o][0]));
+                return_scores.append(np.array(scores[o][0]));
     return return_colors, return_scores,return_info;

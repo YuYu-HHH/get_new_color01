@@ -65,6 +65,7 @@ featureNames = [];
 
 
 def createFeatures(data):
+    np.seterr(invalid='ignore')
     use2 = 0;
     x = get_Data.get_KulerX();
     hueProbs = get_Data.get_HueProb();
@@ -82,14 +83,12 @@ def createFeatures(data):
     x = x.T;
 
     tck = interpolate.splrep(x, y)
-    # mapping = interpolate.splev(x,tck);
     mapping = tck;
 
     numThemes = 1;
     num1 = 15;
     num2 = 12;
     num3 = 3;
-    # rgbs=np.zeros([numThemes,num1]);
     labs = np.zeros([numThemes, num1]);
     color = np.zeros([numThemes, num1]);
     #sortedCol = np.zeros([numThemes, num1]);
@@ -193,9 +192,7 @@ def createFeatures(data):
             if name == 'hsv':
                 col = hsv;
             color = col.reshape((1, 15), order='F');
-
             if name == 'hsv':
-                # hsv1 = np.transpose(hsv);
                 hueProbFeatures[i] = getHueProbFeatures.getHueProbFeatures(hsv, satValThresh, hueProbs);
 
             diffs = np.zeros([3, numColors - 1]);
@@ -221,7 +218,6 @@ def createFeatures(data):
                 diffs[1, j - 1] = col[1, j] - col[1, j - 1];
                 diffs[2, j - 1] = col[2, j] - col[2, j - 1];
             diff2 = np.array([diffs[0, :], diffs[1, :], diffs[2, :]]);
-            # print(diff2)
             diff = diff2.reshape(1, 12);
             numDiffs = numColors - 1;
 
